@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>DevConf 2026</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <header class="site-header">
+      <div class="container navbar">
+        <a class="nav-brand" href="#home">
+          <img src="./assets/logo.png" alt="DevConf 2026 logo" />
+        </a>
+
+        <!-- mobile menu toggle, pure css checkbox hack (no js allowed) -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label
+          class="nav-toggle-label"
+          for="nav-toggle"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <nav class="nav-menu" aria-label="Primary navigation">
+          <ul class="nav-links">
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#tracks">Tracks</a></li>
+            <li><a href="#venue">Venue</a></li>
+            <li><a href="#blog">Blog</a></li>
+          </ul>
+          <a class="button button-primary nav-cta" href="#register"
+            >Register Now</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- hero / banner section -->
+      <section class="hero" id="home">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <h1>Code. <span>Connect</span>. Create.</h1>
+            <p>
+              Join 4,000+ engineers, founders, and builders at the premier
+              developer conference of 2026. Three days of cutting-edge talks,
+              hands-on workshops, and meaningful connections.
+            </p>
+            <a class="button button-primary hero-button" href="#register"
+              >Register Now</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- speakers -->
+      <section class="speakers" id="speakers">
+        <div class="container section-heading">
+          <h2>Meet the Speakers</h2>
+        </div>
+
+        <div class="container speaker-grid">
+          <!-- card 1 -->
+          <article class="speaker-card">
+            <img src="./assets/andrej.png" alt="Andrej Karpathy portrait" />
+            <div class="speaker-card-content">
+              <span class="speaker-category">AI / ML</span>
+              <h3>Andrej Karpathy</h3>
+              <p>Pretraining team lead at Anthropic</p>
+            </div>
+          </article>
+
+          <!-- card 2 -->
+          <article class="speaker-card">
+            <img src="./assets/demis.png" alt="Demis Hassabis portrait" />
+            <div class="speaker-card-content">
+              <span class="speaker-category">Cloud &amp; DevOps</span>
+              <h3>Demis Hassabis</h3>
+              <p>Co-founder and CEO, Google DeepMind</p>
+            </div>
+          </article>
+
+          <!-- card 3 -->
+          <article class="speaker-card">
+            <img src="./assets/gary.png" alt="Gary Marcus portrait" />
+            <div class="speaker-card-content">
+              <span class="speaker-category">Frontend</span>
+              <h3>Gary Marcus</h3>
+              <p>Staff engineer at Vercel</p>
+            </div>
+          </article>
+
+          <!-- card 4 -->
+          <article class="speaker-card">
+            <img src="./assets/mustafa.png" alt="Mustafa Suleyman portrait" />
+            <div class="speaker-card-content">
+              <span class="speaker-category">Security</span>
+              <h3>Mustafa Suleyman</h3>
+              <p>CEO of Microsoft AI</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- pricing -->
+      <section class="pricing" id="register">
+        <div class="container section-heading">
+          <h2>Secure Your Spot</h2>
+          <p>Early-bird pricing ends August 15, 2026.</p>
+        </div>
+
+        <div class="container pricing-grid">
+          <!-- standard plan -->
+          <article class="pricing-card">
+            <span class="plan-label">Standard</span>
+            <p class="plan-price">$399</p>
+            <ul>
+              <li>Access to all 3 conference days</li>
+              <li>48 curated technical talks</li>
+              <li>2 workshop sessions</li>
+              <li>Networking lunch &amp; coffee breaks</li>
+              <li>Conference swag bag</li>
+              <li>Digital recordings (30 days)</li>
+            </ul>
+            <a class="button button-secondary" href="#register">Get Standard</a>
+          </article>
+
+          <!-- pro plan - highlighted card, this is the one most people pick -->
+          <article class="pricing-card pricing-card-highlight">
+            <span class="plan-label">Pro</span>
+            <p class="plan-price">$749</p>
+            <ul>
+              <li>Everything in Standard</li>
+              <li>Unlimited workshop access</li>
+              <li>Speaker meet &amp; greet</li>
+              <li>VIP networking dinner</li>
+              <li>Lifetime recording access</li>
+              <li>1-on-1 mentorship (30 min)</li>
+            </ul>
+            <a class="button button-primary" href="#register">Get Pro</a>
+          </article>
+
+          <!-- team plan -->
+          <article class="pricing-card">
+            <span class="plan-label">Team</span>
+            <p class="plan-price">$5,999</p>
+            <ul>
+              <li>Everything in Pro (10 seats)</li>
+              <li>Dedicated team lounge access</li>
+              <li>Private workshop booking</li>
+              <li>Company logo on event page</li>
+              <li>Recruitment booth (1 day)</li>
+              <li>Priority customer support</li>
+            </ul>
+            <a class="button button-secondary" href="#register">Contact Us</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="hackathon-section" id="hackathon">
+        <div class="container section-heading">
+          <h2>Build Something in 24 Hours</h2>
+          <p>
+            Join the DevConf hackathon on Day 2 and 3 for a fast-paced sprint
+            with mentors, sponsor challenges, and prizes that celebrate
+            developer creativity.
+          </p>
+        </div>
+
+        <div class="container hackathon-grid">
+          <article class="hackathon-card">
+            <div class="hackathon-meta">
+              <span class="hackathon-icon">⏱️</span>
+              <span class="hackathon-tag">Sprint challenge</span>
+            </div>
+            <p class="hackathon-value">24-hour build sprint</p>
+            <p class="hackathon-copy">
+              Start on Day 2, iterate through the night, and present your final
+              demo on Day 3.
+            </p>
+          </article>
+
+          <article class="hackathon-card">
+            <div class="hackathon-meta">
+              <span class="hackathon-icon">🏆</span>
+              <span class="hackathon-tag">Prize pool</span>
+            </div>
+            <p class="hackathon-value">$25,000 in prizes</p>
+            <p class="hackathon-copy">
+              Win cash awards, mentorship sessions, and sponsor-backed product
+              bundles.
+            </p>
+          </article>
+
+          <article class="hackathon-card">
+            <div class="hackathon-meta">
+              <span class="hackathon-icon">👥</span>
+              <span class="hackathon-tag">Team format</span>
+            </div>
+            <p class="hackathon-value">Teams of up to 4</p>
+            <p class="hackathon-copy">
+              Collaborate with your squad or team up with other attendees to
+              build faster.
+            </p>
+          </article>
+
+          <article class="hackathon-card">
+            <div class="hackathon-meta">
+              <span class="hackathon-icon">💡</span>
+              <span class="hackathon-tag">Open track</span>
+            </div>
+            <p class="hackathon-value">Open track</p>
+            <p class="hackathon-copy">
+              Build AI tools, developer tooling, or your own original idea for
+              live judging.
+            </p>
+          </article>
+        </div>
+
+        <div class="container hackathon-action">
+          <a class="button button-primary" href="#register"
+            >Register Your Team</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- footer -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <a class="footer-brand" href="#home">
+          <img src="./assets/footer-logo.png" alt="DevConf 2026 footer logo" />
+        </a>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+        </nav>
+      </div>
+      <hr />
+      <div class="container footer-bottom">
+        <p>&copy; 2026 DevConf. Crafted for developers who build the future.</p>
+      </div>
+    </footer>
+  </body>
+</html>

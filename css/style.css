@@ -1,0 +1,805 @@
+/* ===== Base page styles ===== */
+:root {
+  color: #0f172a;
+  background: #f8fbff;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box; /* saves me from padding/width math headaches */
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #f8fbff;
+  color: #0f172a;
+}
+
+img {
+  display: block;
+  max-width: 100%; /* stops images overflowing on small screens */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a.button {
+  font: inherit;
+}
+
+/* main content wrapper, used everywhere so page edges line up */
+.container {
+  width: min(1240px, calc(100% - 120px));
+  margin: 0 auto;
+}
+
+/* ===== Header / Navbar ===== */
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  position: relative;
+}
+
+.nav-brand img {
+  height: 32px;
+  width: auto;
+}
+
+/* checkbox hack for the mobile menu since we can't use js */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-toggle-label {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.nav-toggle-label span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 999px;
+  background: #0f172a;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* turns the 3 lines into an X when menu is open */
+.nav-toggle:checked + .nav-toggle-label span:first-child {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle:checked + .nav-toggle-label span:last-child {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.nav-menu {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.08);
+  max-height: 0; /* collapsed by default on mobile */
+  overflow: hidden;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.35s ease;
+  opacity: 0;
+  z-index: 20;
+  padding: 24px 20px 28px;
+}
+
+.nav-toggle:checked ~ .nav-menu {
+  max-height: 420px; /* just needs to be bigger than the real content */
+  opacity: 1;
+}
+
+.nav-links {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  display: block;
+  padding: 12px 0;
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.nav-cta {
+  display: block;
+  width: 100%;
+}
+
+/* shared button look, reused for register/get plan/contact us etc */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 32px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-1px); /* tiny lift on hover, feels more alive */
+}
+
+.button-primary {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.22);
+}
+
+.button-secondary {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+/* ===== Hero / Banner ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  padding: 120px 0 100px;
+  min-height: 78vh;
+  display: grid;
+  place-items: center;
+}
+
+/* background image sits behind everything */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/banner.jpg") center/cover no-repeat;
+  opacity: 0.95;
+  z-index: 0;
+}
+
+/* dark overlay so white text stays readable over the photo */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0) 70%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0.88) 87%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 28px;
+  align-items: center;
+  justify-items: center;
+  max-width: 840px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero-text {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  text-align: center;
+}
+
+.hero h1,
+.hero p,
+.hero-button {
+  width: 100%;
+  max-width: 840px;
+}
+
+.hero-button {
+  justify-self: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(
+    3.5rem,
+    5vw,
+    5rem
+  ); /* scales with viewport, no media query needed */
+  line-height: 1;
+  letter-spacing: -0.04em;
+  max-width: 100%;
+}
+
+.hero h1 span {
+  /* the "Connect" word from the design, italic + lighter color */
+  font-style: italic;
+  font-weight: 700;
+  color: #c7d2fe;
+}
+
+.hero p {
+  max-width: 829px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.375rem;
+  line-height: 1.09;
+}
+
+.hero-button {
+  display: inline-flex;
+  width: auto;
+  padding: 18px 36px;
+  font-weight: 700;
+  margin-top: 12px;
+  border-radius: 18px;
+}
+
+/* ===== Section headings (reused for speakers + pricing) ===== */
+.section-heading {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.section-heading h2 {
+  margin: 16px 0 0;
+  font-size: 3rem;
+  line-height: 1.1;
+}
+
+/* speakers heading is a bit bigger in figma, so overriding here */
+.speakers .section-heading h2 {
+  font-size: 3.5rem;
+}
+
+.pricing .section-heading h2 {
+  font-size: 3rem;
+}
+
+.section-heading p {
+  max-width: 720px;
+  margin: 16px auto 0;
+  color: #575757;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ===== Speaker cards ===== */
+.speaker-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* stacked on mobile, 2 columns from tablet up */
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+.speaker-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+}
+
+.speaker-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover; /* crops instead of squishing the photo */
+}
+
+.speaker-card-content {
+  padding: 20px;
+}
+
+.speaker-category {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #2563eb;
+}
+
+.speaker-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.speaker-card p {
+  margin: 0;
+  color: #475569;
+}
+
+/* ===== Pricing cards ===== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 col mobile -> 2 tablet -> 3 desktop, see media queries below */
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+.pricing-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 28px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 420px; /* keeps all 3 cards the same height even with different bullet counts */
+}
+
+/* ===== Hackathon section ===== */
+.hackathon-section {
+  margin-bottom: 80px;
+}
+
+.hackathon-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.hackathon-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 28px;
+  padding: 28px 24px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 18px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.hackathon-card:hover,
+.hackathon-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 84px rgba(15, 23, 42, 0.12);
+  border-color: #2563eb;
+}
+
+.hackathon-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hackathon-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+  font-size: 1.25rem;
+}
+
+.hackathon-tag {
+  display: inline-block;
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.hackathon-value {
+  margin: 0;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.hackathon-copy {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.hackathon-action {
+  text-align: center;
+}
+
+.hackathon-action .button {
+  position: relative;
+  padding: 16px 42px;
+  animation: hackathon-pulse 1.8s ease-out 0.25s 1 both;
+}
+
+.hackathon-action .button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  transition:
+    width 0.28s ease,
+    left 0.28s ease;
+  transform: translateX(-50%);
+}
+
+@keyframes hackathon-pulse {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 18px 40px rgba(37, 99, 235, 0.22);
+  }
+  40% {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 24px 48px rgba(37, 99, 235, 0.24);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 18px 40px rgba(37, 99, 235, 0.22);
+  }
+}
+
+.hackathon-action .button:hover::after,
+.hackathon-action .button:focus-visible::after {
+  width: 60%;
+  left: 50%;
+}
+
+/* the "Pro" plan card, made to stand out like in figma */
+.pricing-card-highlight {
+  background: #0f172a;
+  color: #f8fafc;
+  border-color: transparent;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.18);
+}
+
+.pricing-card .plan-price,
+.pricing-card-highlight .plan-price {
+  margin-bottom: 12px;
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.pricing-card li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 14px;
+}
+
+/* custom little dot bullet instead of the default browser one */
+.pricing-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.pricing-card-highlight .button-primary {
+  background: #2563eb;
+}
+
+.pricing-card-highlight .button-secondary {
+  background: #1f2937;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+.plan-label {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #2563eb;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.pricing-card .plan-price,
+.pricing-card-highlight .plan-price {
+  margin: 0;
+  font-size: 3.25rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pricing-card-highlight ul,
+.pricing-card ul {
+  margin: 0;
+  padding-left: 0;
+  color: inherit;
+}
+
+.pricing-card-highlight li {
+  color: #dbeafe;
+}
+
+/* =====  Placeholder / AI section =====
+   NOTE TO SELF: replace this whole block's content once I decide on
+   my custom section idea, keep the class names the same so the css still applies */
+.placeholder-block {
+  background: rgba(124, 58, 237, 0.06);
+  border: 1px dashed rgba(124, 58, 237, 0.45);
+  border-radius: 24px;
+  padding: 48px 24px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.placeholder-block h2 {
+  margin: 0;
+  color: #7c3aed;
+  font-size: 2rem;
+}
+
+.placeholder-block p {
+  margin: 16px auto 0;
+  max-width: 720px;
+  color: #5b21b6;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  background: #0d1b2a;
+  color: #ffffff;
+  padding: 56px 0 32px;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-brand img {
+  height: 36px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* hiding the real <hr>, using border-top on footer-top instead for the divider */
+.site-footer hr {
+  display: none;
+}
+
+.footer-bottom {
+  padding-top: 24px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+/* =====================================
+   Responsive breakpoints
+   mobile-first, so base styles above = smallest screens
+   ===================================== */
+
+/* small phones -> slightly bigger phones */
+@media (min-width: 480px) {
+  .hero {
+    padding: 120px 0 110px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+}
+
+/* tablet and up - nav becomes a normal horizontal bar, grids go to 2 columns */
+@media (min-width: 768px) {
+  .navbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+    padding: 22px 0;
+  }
+
+  .nav-toggle-label {
+    display: none; /* don't need the hamburger anymore at this size */
+  }
+
+  .nav-menu {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: none;
+    opacity: 1;
+    background: transparent;
+    box-shadow: none;
+    border-bottom: none;
+    padding: 0;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .nav-links a {
+    padding: 0;
+    color: #0f172a;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: #2563eb;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .nav-cta {
+    width: auto;
+  }
+
+  .hero {
+    min-height: 82vh;
+  }
+
+  .hero-content {
+    gap: 40px;
+    justify-items: center;
+  }
+
+  .hero-text {
+    max-width: 720px;
+  }
+
+  .hero p {
+    font-size: 1.07rem;
+  }
+
+  .hero-button {
+    justify-self: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(4rem, 5vw, 5.5rem);
+  }
+
+  .speaker-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hackathon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* desktop - pricing goes to 3 columns, everything gets a bit more breathing room */
+@media (min-width: 1024px) {
+  .container {
+    width: min(1340px, calc(100% - 40px));
+  }
+
+  .navbar {
+    padding: 26px 0;
+  }
+
+  .hero {
+    padding: 160px 0 130px;
+  }
+
+  .hero-content {
+    max-width: 920px;
+    gap: 36px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .hero-button {
+    padding: 18px 42px;
+  }
+
+  .pricing-card {
+    padding: 36px 32px;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
